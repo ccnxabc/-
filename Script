@@ -1,0 +1,30 @@
+//这个程序的设计是鼠标在关键的两个点来回移动，符合时间条件才执行点击操作
+//并且点击操作只执行一次！这点很重要！
+i=1
+While i = 1
+//第一个窗口处，这是手工设置好平仓的各种条件
+MoveTo 106, 416
+Delay 1000
+//考虑到鼠标来回移动需要时间，这里我留了三个时间点不可能会全部不匹配
+//以下时间格式都是经过测试的可执行的!
+//If Time = "3:59:45" or Time = "3:59:46" or Time = "3:59:47" Then---测试无法按点执行（有过多卖400 ASHR的教训）
+//If Time = "23:15:45" or Time = "23:15:46" or Time = "23:15:47" Then
+//If Time = "00:06:45" or Time = "00:06:46" or Time = "00:06:47" Then
+//If Time = "16:22:45" or Time = "16:22:46" or Time = "16:22:47" Then---测试通过，系统时间改成美国时区
+//If Time = "16:22:45" or Time = "16:22:46" or Time = "16:22:47" Then
+//If Time = "04:39:45" or Time = "04:39:46" or Time = "04:39:47" Then---测试通过需要加0
+If Time = "03:59:45" or Time = "03:59:46" or Time = "03:59:47" Then
+    LeftClick 1
+	Delay 1000
+	i=0
+End If
+//第二个窗口处，这是IB用来确认交易的窗口
+MoveTo 582, 560
+Delay 1000
+
+If i=0 Then 
+    LeftClick 1
+    //MsgBox "HELLO"
+End If
+    
+Wend
