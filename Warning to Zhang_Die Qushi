@@ -1,0 +1,58 @@
+i=0
+While i=0
+
+If Time = "09:31:00" or Time = "09:31:01" or Time = "09:31:02"or Time = "14:29:00" or Time="14:29:01"or Time="14:29:02"Then 
+	FindPic 0, 554, 1277, 732, "Attachment:\ZHANG_1.bmp", 1, intX, intY
+	If intX > 0 And intY > 0 Then 
+		//Call Plugin.Media.Play("C:\WINDOWS\Media\Windows XP 启动.wav")
+        Call Plugin.Media.Play("C:\WINDOWS\Media\星际争霸-your force is under attack.wav")    
+        Delay 5000
+        Call Plugin.Media.Play("C:\WINDOWS\Media\星际争霸-your force is under attack.wav")    
+        Delay 5000
+        Call Plugin.Media.Play("C:\WINDOWS\Media\星际争霸-your force is under attack.wav")    
+        Delay 5000
+        Call Plugin.Media.Play("C:\WINDOWS\Media\星际争霸-your force is under attack.wav")    
+        Delay 5000
+        Call Plugin.Media.Play("C:\WINDOWS\Media\星际争霸-your force is under attack.wav")    
+        Delay 5000
+        Call Plugin.Media.Play("C:\WINDOWS\Media\星际争霸-your force is under attack.wav")    
+        Delay 5000
+        Delay 30000
+        i=1
+        //MessageBox "sell"
+        //Call Plugin.Media.Beep(784, 200)
+    
+    Else 
+    	Delay 1000
+    End If
+Else 
+Delay 1000   
+End If
+
+Wend
+
+
+While i = 1
+
+FindPic 0,554,1277,732,"Attachment:\ZHANG_1.bmp",1,intX,intY
+If intX > 0 And intY > 0 Then
+    //Call Plugin.Media.Play("C:\WINDOWS\Media\Windows XP 启动.wav")
+    Call Plugin.Media.Play("C:\WINDOWS\Media\星际争霸-your force is under attack.wav")    
+    Delay 5000
+    Call Plugin.Media.Play("C:\WINDOWS\Media\星际争霸-your force is under attack.wav") 
+    Delay 5000
+    Call Plugin.Media.Play("C:\WINDOWS\Media\星际争霸-your force is under attack.wav")   
+    Delay 5000
+    Call Plugin.Media.Play("C:\WINDOWS\Media\星际争霸-your force is under attack.wav")    
+    Delay 5000
+    Call Plugin.Media.Play("C:\WINDOWS\Media\星际争霸-your force is under attack.wav")    
+    Delay 5000
+    Call Plugin.Media.Play("C:\WINDOWS\Media\星际争霸-your force is under attack.wav")   
+    Delay 5000
+    Delay 30000
+    Else 
+    Delay 60000
+End If
+    
+Wend
+
