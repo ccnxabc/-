@@ -1,43 +1,102 @@
-i=1
+Plugin.Media.Beep 参数1,参数2
+i = 1
+buy_1_sell_1=0
 While i=1
-
-//If Time = "09:31:00" or Time = "09:31:01" or Time = "09:31:02" or Time = "13:17::07" or Time = "13:17:08" or Time = "13:17:09" Then 
+//MessageBox "IN"
+//If Time = "09:31:00" or Time = "09:31:01" or Time = "09:31:02" or Time = "13:17::07" or Time = "13:17:08" or Time = "13:17:09" Then
 //可以随心设置分钟粒度进行图形判断，只要系统时间与通达信两者的时间差值固定不变即可
 //同时延迟改为0.5s，这样可以尽量减少误差
-If ( Time > "09:30:00" and Time < "15:00:01" ) and ( Second(Time) = 7 or Second(Time) = 8 or Second(Time) = 9 ) Then 
-	FindPic 0, 554, 1277, 732, "Attachment:\ZHANG_1.bmp", 1, intX, intY
-	If intX > 0 And intY > 0 Then 
-		//Call Plugin.Media.Play("C:\WINDOWS\Media\Windows XP 启动.wav")
+//If ((Time > "09:30:00" and Time < "11:30:01") or (Time > "13:00:00" and Time < "15:00:01")) and ( Second(Time) = 7 or Second(Time) = 8 or Second(Time) = 9 ) Then
+//实在没办法，为了获得双位小时数，只能改成汉城时区；1为小时数有问题
+If ((Time > "10:30:00" and Time < "12:30:01") or (Time > "14:00:00" and Time < "16:00:01")) and ( Second(Time) = 7 or Second(Time) = 8 or Second(Time) = 9 ) Then
+//If Time > "09:30:00" and Time < "11:30:01" Then
+//If True Then
+    //MessageBox Time
+    //MoveTo 750, 600
+    //MoveTo 710, 600
+    //MoveTo 750, 600
+    //Delay 100
+    FindPic 0, 558, 1023, 738, "Attachment:\ZHANG_1.bmp", 1, intX, intY
+    If intX > 0 And intY > 0 Then
+        If buy_1_sell_1 = 0 Then
+            buy_1_sell_1 = 1
+            MoveTo 900, 470
+            Delay 100
+            LeftClick 1
+            MoveTo 625, 348
+            Delay 100
+            LeftDown 1
+            MoveTo 555, 348
+            Delay 100
+            LeftUp 1
+            KeyDown "Ctrl", 1
+            Delay 137
+            KeyDown "C", 1
+            Delay 144
+            KeyUp "C", 1
+            Delay 32
+            KeyUp "Ctrl", 1
+            clipboard = Plugin.Sys.GetCLB()
+            Call Plugin.File.WriteFileEx("C:\IBM-9\1234567.txt", Date)
+            Call Plugin.File.WriteFileEx("C:\IBM-9\1234567.txt", ",")
+            Call Plugin.File.WriteFileEx("C:\IBM-9\1234567.txt", Time)
+            Call Plugin.File.WriteFileEx("C:\IBM-9\1234567.txt", ","+"BUY"+","+clipboard)
+        End If
+       
+        //Call Plugin.Media.Play("C:\WINDOWS\Media\Windows XP 启动.wav")
         tmp = 0
         //5秒每次循环6次，共计30秒；后续再延迟30秒
+        //MessageBox "buy"
         While tmp < 6
-        	Call Plugin.Media.Play("C:\WINDOWS\Media\星际争霸-your force is under attack.wav")    
-        	Delay 5000
-        	tmp=tmp+1
+            Call Plugin.Media.Play("C:\WINDOWS\Media\星际争霸-your force is under attack.wav")   
+            Delay 5000
+            tmp=tmp+1
         Wend
         //延迟改为0.5s，这样可以尽量减少误差
         Delay 500
-        //MessageBox "sell"
         //Call Plugin.Media.Beep(784, 200)
-    Else 
-        FindPic 0, 554, 1277, 732, "Attachment:\DIE_1.bmp", 1, intX, intY
-        If intX > 0 And intY > 0 Then 
-        	tmp = 0
+    Else
+        FindPic 0, 558, 1023, 738, "Attachment:\DIE_1.bmp", 1, intX, intY
+        If intX > 0 And intY > 0 Then
+            If buy_1_sell_1 = 1 Then
+                buy_1_sell_1 = 0
+                MoveTo 760, 470
+                Delay 100
+                LeftClick 1
+                MoveTo 625, 348
+                Delay 100
+                LeftDown 1
+                MoveTo 555, 348
+                Delay 100
+                LeftUp 1
+                KeyDown "Ctrl", 1
+                Delay 137
+                KeyDown "C", 1
+                Delay 144
+                KeyUp "C", 1
+                Delay 32
+                KeyUp "Ctrl", 1
+                clipboard = Plugin.Sys.GetCLB()
+                Call Plugin.File.WriteFileEx("C:\IBM-9\1234567.txt", Date)
+                Call Plugin.File.WriteFileEx("C:\IBM-9\1234567.txt", ",")
+                Call Plugin.File.WriteFileEx("C:\IBM-9\1234567.txt", Time)
+                Call Plugin.File.WriteFileEx("C:\IBM-9\1234567.txt", ","+"SELL"+","+clipboard)
+             End If
+            tmp = 0
             //5秒每次循环6次，共计30秒；后续再延迟30秒
-        	While tmp < 6
-        	Call Plugin.Media.Play("C:\WINDOWS\Media\星际争霸-nuclear mission ready.wav")    
-        	Delay 5000
-        	tmp=tmp+1
+            //MessageBox "SELL"
+            While tmp < 6
+            Call Plugin.Media.Play("C:\WINDOWS\Media\星际争霸-nuclear mission ready.wav")   
+            Delay 5000
+            tmp=tmp+1
             Wend
-        	//延迟改为0.5s，这样可以尽量减少误差
-        	Delay 500
-        Else 
-        	//延迟改为0.5s，这样可以尽量减少误差
-        	Delay 500
-        End If    		
+            //延迟改为0.5s，这样可以尽量减少误差
+            Delay 500
+        Else
+            //延迟改为0.5s，这样可以尽量减少误差
+            Delay 500
+        End If           
     End If
 End If
 
 Wend
-
-
