@@ -1,0 +1,46 @@
+//实在没办法，为了获得双位小时数，只能改成汉城时区；1为小时数有问题
+If ((Time > "10:00:00" Then
+	MessageBox "汉城时间判断有效"
+	//富途卖出价格位置
+	MoveTo 900, 470
+    Delay 3000
+    LeftClick 1
+    
+    //富途买进价格位置
+    MoveTo 760, 470
+    Delay 3000
+    LeftClick 1
+    
+    //价格复制粘帖测试
+    MoveTo 625, 348
+    Delay 3000
+    LeftDown 1
+    MoveTo 555, 348
+    Delay 3000
+    LeftUp 1
+    
+    KeyDown "Ctrl", 1
+    Delay 137
+    KeyDown "C", 1
+    Delay 144
+    KeyUp "C", 1
+    Delay 32
+    KeyUp "Ctrl", 1
+    clipboard = Plugin.Sys.GetCLB()
+    MessageBox clipboard
+    
+    //声音测试
+    MessageBox "Here start voice test"
+    Call Plugin.Media.Play("C:\WINDOWS\Media\星际争霸-your force is under attack.wav")
+    Call Plugin.Media.Play("C:\WINDOWS\Media\星际争霸-nuclear mission ready.wav"）
+    
+    //图像寻找测试
+    MessageBox "Here start picture finding"
+    FindPic 0, 558, 1023, 738, "Attachment:\ZHANG_TEST.bmp", 1, intX, intY
+    If intX > 0 And intY > 0 Then 
+    	MessageBox "Found!"
+    	MoveTo intX, intY
+    Else 
+    	MessageBox "NOT Found!"
+    End If
+End If
