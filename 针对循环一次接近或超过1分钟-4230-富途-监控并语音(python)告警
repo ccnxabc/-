@@ -1,0 +1,130 @@
+Dim stock(2)
+'stock(0)="601288"
+'stock(1)="601398"
+'stock(2) = "002600"
+
+stock(0)="01288"
+stock(1)="800000"
+stock(2)="999010"
+'stock(3)="002142"
+'stock(4)="600000"
+'stock(5)="600015"
+'stock(6)="600016"
+'stock(7)="600036"
+'stock(8)="601009"
+'stock(9)="601166"
+'stock(10)="601169"
+'stock(11)="600028"
+'stock(12)="601328"
+'stock(13)="601398"
+'stock(14)="601818"
+'stock(15)="601939"
+'stock(16)="601988"
+'stock(17)="601998"
+'stock(18)="601318"
+'stock(19)="601628"
+'stock(20)="601336"
+'stock(21)="601601"
+
+Dim stock_name(2)
+'stock_name(0)="工商银行"
+'stock_name(1)="农业银行"
+'stock_name(2) = "xxx"
+
+stock_name(0)="农行HK"                                                                                          
+stock_name(1)="HSI"
+'stock_name(2)="平安银行"
+stock_name(2)="HK future"
+'stock_name(3)="宁波银行"
+'stock_name(3)="HSI"
+'stock_name(4)="浦发银行"
+'stock_name(5)="华夏银行"
+'stock_name(6)="民生银行"
+'stock_name(7)="招商银行"
+'stock_name(8)="南京银行"
+'stock_name(9)="兴业银行"
+'stock_name(10)="北京银行"
+'stock_name(11)="中国石化" 
+'stock_name(12)="交通银行"
+'stock_name(13)="工商银行"
+'stock_name(14)="光大银行"
+'stock_name(14)="HSI"
+'stock_name(15)="建设银行"
+'stock_name(15)="HSI"
+'stock_name(16)="中国银行"
+'stock_name(17)="中信银行"
+'stock_name(18)="中国平安"
+'stock_name(19)="中国人寿"
+'stock_name(20)="新华保险"
+'stock_name(21)="中国太保"
+
+MsgBox "确认汉城时间，提前1小时"
+
+Delay 5000
+
+While 1
+
+	If (( Time > "09:30:00" and Time < "12:00:01" ) or ( Time > "13:00:00" and Time < "22:01:01" ) )  Then 
+		For i = 0 To 2
+			
+			'要确保富途窗口在最前端（弹出的python调用可能会阻碍富途代码输入）
+			MoveTo 680,12
+			LeftClick 1
+			Delay 200
+			
+			'特别针对富途，激活准备输入代码(即使之前有错误输入，也能清掉重输)
+			MoveTo 246,74
+			LeftClick 1
+			Delay 200
+			
+			SayString stock(i)
+			'SayString "601998"
+	
+			KeyDown "Enter", 1
+			Delay 20
+			KeyUp "Enter", 1
+			'针对代理上网的慢网速情况
+			Delay 2000
+	
+			JieGuo=Find_Picture(stock_name(i))
+			If JieGuo = 2 Then 
+				Call Plugin.File.WriteFileEx("C:\IBM-9\GongJun_TouXi.txt", Date)
+				Call Plugin.File.WriteFileEx("C:\IBM-9\GongJun_TouXi.txt", ",")
+				Call Plugin.File.WriteFileEx("C:\IBM-9\GongJun_TouXi.txt", Time)
+				Call Plugin.File.WriteFileEx("C:\IBM-9\GongJun_TouXi.txt", ","+stock(i)+","+stock_name(i))
+			end if
+	
+		Next
+	End If
+
+Wend
+
+Function Find_Picture(this_stock)
+	JieGuo = 0
+	
+	
+	FindPic 374,308,400,322,"Attachment:\ZHANG_1_FTNN.bmp",1,intX,intY
+	If intX > 0 And intY > 0 Then 
+		'针对富途去掉该语句
+		'MoveTo intX, intY
+		JieGuo = 1
+		'由python朗读代码
+		RunApp "D:\Anaconda2\python.exe C:\\IBM-9\\simple_speak.py "+ this_stock
+		Delay 2000
+		
+		Call Plugin.Media.Play("C:\WINDOWS\Media\星际争霸-your force is under attack.wav")	 
+	Else 
+		FindPic 374,308,400,322, "Attachment:\ZHANG_MINUS_1_FTNN.bmp", 1, intX, intY
+		If intX > 0 And intY > 0 Then 
+			'针对富途去掉该语句
+			'MoveTo intX, intY
+			JieGuo = - 1 
+			'由python朗读代码
+			RunApp "D:\Anaconda2\python.exe C:\\IBM-9\\simple_speak.py "+ this_stock
+			Delay 2000
+			Call Plugin.Media.Play("C:\WINDOWS\Media\星际争霸-nuclear mission ready.wav")	  
+		End If
+	End If
+	
+	Find_wangshougong_bi = JieGuo
+End Function
