@@ -1,0 +1,272 @@
+For i=1 To 10
+    //这里的脚本可以循环10次
+Next
+FindPic 0,0,1024,768,"图片.bmp",0.9,intX,intY
+Dim Result
+Result="Here："
+
+'RunApp "C:\Anaconda2\python.exe C:\\IBM-9\\TopN_LiuRu_Select.py"
+'MsgBox "TopN资金流代码已生成，DOS窗口打开表示正在运行python，DOS自动关闭后表示py运行完毕。点击确认后继续"
+
+
+//下面这句是向目标文件("C:\Config.txt")读出文本内容到变量(Text) 
+Text = Plugin.File.ReadFileEx("C:\IBM-9\TopN_LiuRu_Eastmoney_Stock.txt") 
+dim MyArray 
+MyArray = Split(Text, "|") 
+
+If UBound(MyArray)>=0 Then
+	i=0
+    For UBound(MyArray) 
+    //下面这句是得到文本内容
+        
+    	'要确保富途窗口在最前端（弹出的python调用可能会阻碍富途代码输入）
+		MoveTo 680,12
+		LeftClick 1
+		Delay 20
+
+    	'要确保富途使用1分钟粒度
+		MoveTo 560,46
+		LeftClick 1
+		Delay 20
+			
+		'特别针对富途，激活准备输入代码(即使之前有错误输入，也能清掉重输)
+		MoveTo 246,73
+		LeftClick 1
+		Delay 20
+			
+		SayString MyArray(i)
+		
+	
+		KeyDown "Enter", 1
+		Delay 20
+		KeyUp "Enter", 1
+		'针对代理上网的慢网速情况
+		Delay 1000
+	
+		JieGuo = Find_FTNN_ZiJin_Liu_Dot(MyArray(i))
+		MsgBox JieGuo
+		'If JieGuo = 1 Then 
+		'	Result = Result + CStr(MyArray(i))+ ","
+		'End If
+        i = i + 1
+    Next
+
+
+End If
+
+MsgBox Result
+'对话框显示需要自己手工核实的代码，程序到此结束
+
+
+Function Find_FTNN_ZiJin_Liu_Dot(this_stock)
+
+	Dim tmp_string
+	
+	Find_Dot_JieGuo = 0
+	
+	Dot_intY = 755
+	
+	Green_Num = "00A80C"
+	Red_Num = "0000FF"
+	Back_Color_Num="FCF4EA"
+	
+	For Dot_intX=504 to 560 step 1
+		IfColor Dot_intX, Dot_intY, Green_Num, 0 Then
+			IfColor Dot_intX-1, Dot_intY,Back_Color_Num, 0 Then
+				
+				IfColor Dot_intX + 1, Dot_intY,Back_Color_Num, 0 Then
+					IfColor Dot_intX - 1, Dot_intY - 1, Back_Color_Num, 0 Then
+						IfColor Dot_intX + 1, Dot_intY - 1, Back_Color_Num, 0 Then
+							IfColor Dot_intX, Dot_intY - 1, Back_Color_Num, 0 Then
+								MsgBox "Find it"
+								MsgBox Dot_intX
+								MsgBox Dot_intY
+								tmp_string="-"+tmp_string
+								Find_Dot_JieGuo = 1
+								Exit For
+							End If		
+						End If
+					End If
+				End If
+						
+				
+				'判断1，4，7
+				IfColor Dot_intX, Dot_intY - 8, Green_Num, 0 Then
+					IfColor Dot_intX + 1, Dot_intY - 2, Green_Num, 0 Then
+						MoveTo Dot_intX, Dot_intY
+						tmp_string=tmp_string+"4"
+						Msgbox"4"
+					Else 
+						IfColor Dot_intX-2, Dot_intY - 6, Green_Num, 0 Then
+							MoveTo Dot_intX, Dot_intY
+							tmp_string=tmp_string+"1"
+							Msgbox"1"	
+						Else 
+							IfColor Dot_intX+2, Dot_intY - 6, Green_Num, 0 Then
+								MoveTo Dot_intX, Dot_intY
+								tmp_string=tmp_string+"7"
+								Msgbox"7"	
+							End If	
+						End If
+					End If	
+				End if		
+				
+				'判断2
+				IfColor Dot_intX + 4, Dot_intY, Green_Num, 0 Then
+					'针对xx.8或xx.6，如果不加以下判断条件，会将"."误判为2
+					IfColor Dot_intX + 1, Dot_intY, Green_Num, 0 Then
+						MoveTo Dot_intX, Dot_intY
+						tmp_string=tmp_string+"2"
+						Msgbox "2"
+					End If
+				End If
+					
+					
+				IfColor Dot_intX - 1, Dot_intY - 1, Green_Num, 0 Then
+					IfColor Dot_intX - 1, Dot_intY - 6, Back_Color_Num, 0 Then
+						MoveTo Dot_intX, Dot_intY
+						tmp_string=tmp_string+"3"
+						Msgbox "3"
+					Else 
+						IfColor Dot_intX, Dot_intY - 5, Green_Num, 0 Then
+							MoveTo Dot_intX, Dot_intY
+							tmp_string=tmp_string+"5"
+							Msgbox "5"
+							
+						Else 
+							IfColor Dot_intX, Dot_intY - 4, Green_Num, 0 Then
+								IfColor Dot_intX - 1, Dot_intY - 4, Green_Num, 0 Then
+									MoveTo Dot_intX, Dot_intY
+									tmp_string=tmp_string+"6"
+									Msgbox "6"
+								Else 
+									MoveTo Dot_intX, Dot_intY
+									tmp_string=tmp_string+"8"
+									Msgbox "8"	
+								End If
+							Else 
+								IfColor Dot_intX - 1, Dot_intY - 4, Green_Num, 0 Then
+									IfColor Dot_intX , Dot_intY - 3, Green_Num, 0 Then	
+										MoveTo Dot_intX, Dot_intY
+										tmp_string=tmp_string+"9"
+										Msgbox "9"
+									Else 
+										MoveTo Dot_intX, Dot_intY
+										tmp_string=tmp_string+"0"
+										Msgbox "0"
+									End If
+								End If
+							End If
+						End If
+					End If
+				End If	
+					
+			
+			
+			End If
+		
+		Else 
+		IfColor Dot_intX, Dot_intY, Red_Num, 0 Then
+			IfColor Dot_intX-1, Dot_intY,Back_Color_Num, 0 Then
+				
+				IfColor Dot_intX + 1, Dot_intY,Back_Color_Num, 0 Then
+					IfColor Dot_intX - 1, Dot_intY - 1, Back_Color_Num, 0 Then
+						IfColor Dot_intX + 1, Dot_intY - 1, Back_Color_Num, 0 Then
+							IfColor Dot_intX, Dot_intY - 1, Back_Color_Num, 0 Then
+								MsgBox "Find it"
+								MsgBox Dot_intX
+								MsgBox Dot_intY
+								'tmp_string="-"+tmp_string
+								Find_Dot_JieGuo = 1
+								Exit For
+							End If		
+						End If
+					End If
+				End If
+						
+				
+				'判断1，4，7
+				IfColor Dot_intX, Dot_intY - 8, Red_Num, 0 Then
+					IfColor Dot_intX + 1, Dot_intY - 2, Red_Num, 0 Then
+						MoveTo Dot_intX, Dot_intY
+						tmp_string=tmp_string+"4"
+						Msgbox"4"
+					Else 
+						IfColor Dot_intX-2, Dot_intY - 6, Red_Num, 0 Then
+							MoveTo Dot_intX, Dot_intY
+							tmp_string=tmp_string+"1"
+							Msgbox"1"	
+						Else 
+							IfColor Dot_intX+2, Dot_intY - 6, Red_Num, 0 Then
+								MoveTo Dot_intX, Dot_intY
+								tmp_string=tmp_string+"7"
+								Msgbox"7"	
+							End If	
+						End If
+					End If	
+				End if		
+				
+				'判断2
+				IfColor Dot_intX + 4, Dot_intY, Red_Num, 0 Then
+					'针对xx.8或xx.6，如果不加以下判断条件，会将"."误判为2
+					IfColor Dot_intX + 1, Dot_intY, Red_Num, 0 Then
+						MoveTo Dot_intX, Dot_intY
+						tmp_string=tmp_string+"2"
+						Msgbox "2"
+					End If
+				End If
+					
+					
+				IfColor Dot_intX - 1, Dot_intY - 1, Red_Num, 0 Then
+					IfColor Dot_intX - 1, Dot_intY - 6, Back_Color_Num, 0 Then
+						MoveTo Dot_intX, Dot_intY
+						tmp_string=tmp_string+"3"
+						Msgbox "3"
+					Else 
+						IfColor Dot_intX, Dot_intY - 5, Red_Num, 0 Then
+							MoveTo Dot_intX, Dot_intY
+							tmp_string=tmp_string+"5"
+							Msgbox "5"
+							
+						Else 
+							IfColor Dot_intX, Dot_intY - 4, Red_Num, 0 Then
+								IfColor Dot_intX - 1, Dot_intY - 4, Red_Num, 0 Then
+									MoveTo Dot_intX, Dot_intY
+									tmp_string=tmp_string+"6"
+									Msgbox "6"
+								Else 
+									MoveTo Dot_intX, Dot_intY
+									tmp_string=tmp_string+"8"
+									Msgbox "8"	
+								End If
+							Else 
+								IfColor Dot_intX - 1, Dot_intY - 4, Red_Num, 0 Then
+									IfColor Dot_intX , Dot_intY - 3, Red_Num, 0 Then	
+										MoveTo Dot_intX, Dot_intY
+										tmp_string=tmp_string+"9"
+										Msgbox "9"
+									Else 
+										MoveTo Dot_intX, Dot_intY
+										tmp_string=tmp_string+"0"
+										Msgbox "0"
+									End If
+								End If
+							End If
+						End If
+					End If
+				End If	
+					
+			
+			
+			End If
+		End If
+		
+		
+		End If
+		
+	Next
+	
+	
+	Find_FTNN_ZiJin_Liu_Dot = tmp_string
+
+End Function
