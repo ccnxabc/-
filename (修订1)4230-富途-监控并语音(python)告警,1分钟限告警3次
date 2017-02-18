@@ -126,7 +126,7 @@ Function Find_Picture(this_stock)
 	JieGuo = 0
 	
 	
-	FindPic 374,308,400,322,"Attachment:\ZHANG_1_FTNN.bmp",1,intX,intY
+	FindPic 375,334,389,344,"Attachment:\ZHANG_1_FTNN.bmp",1,intX,intY
 	If intX > 0 And intY > 0 Then 
 		'针对富途去掉该语句
 		'MoveTo intX, intY
@@ -137,7 +137,7 @@ Function Find_Picture(this_stock)
 		
 		Call Plugin.Media.Play("C:\WINDOWS\Media\星际争霸-your force is under attack.wav")	 
 	Else 
-		FindPic 374,308,400,322, "Attachment:\ZHANG_MINUS_1_FTNN.bmp", 1, intX, intY
+		FindPic 375,334,389,344, "Attachment:\ZHANG_MINUS_1_FTNN.bmp", 1, intX, intY
 		If intX > 0 And intY > 0 Then 
 			'针对富途去掉该语句
 			'MoveTo intX, intY
