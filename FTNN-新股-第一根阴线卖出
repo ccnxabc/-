@@ -1,0 +1,203 @@
+//RtColor=Plugin.Color.GetPixelColor(1384,852,0)
+//MessageBox RtColor
+ScreenW = Plugin.GetSysInfo.GetScreenResolutionX()   
+//Msgbox "获得屏幕分辨率宽度："&ScreenW  
+
+//MaBook Air 有左边工具栏(我的,个股,行情,选股...)
+MacBookAir_LEFT_TOP_POINT_X = 2
+MacBookAir_LEFT_TOP_POINT_Y = 33
+
+//股票代码输入框
+MacBookAir_STOCK_CODE_RIGHT_BIAS_X=90-MacBookAir_LEFT_TOP_POINT_X
+MacBookAir_STOCK_CODE_RIGHT_BIAS_Y = 45 - MacBookAir_LEFT_TOP_POINT_Y
+
+'MacBookAir_STOCK_CODE_LEFT_BIAS_X =26-MacBookAir_LEFT_TOP_POINT_X
+MacBookAir_STOCK_CODE_LEFT_BIAS_X =28-MacBookAir_LEFT_TOP_POINT_X
+MacBookAir_STOCK_CODE_LEFT_BIAS_Y =45-MacBookAir_LEFT_TOP_POINT_Y
+
+MacBookAir_FTNN_ZHIBIAO_BASEPOINT_X=2
+MacBookAir_FTNN_ZHIBIAO_BASEPOINT_Y = 732
+
+//检查指标出现的区域的相对坐标
+MacBookAir_FTNN_ZHIBIAO_CHECKAREA_LEFT_TOP_BIAS_X=113-MacBookAir_FTNN_ZHIBIAO_BASEPOINT_X
+MacBookAir_FTNN_ZHIBIAO_CHECKAREA_LEFT_TOP_BIAS_Y = 736-MacBookAir_FTNN_ZHIBIAO_BASEPOINT_Y
+
+MacBookAir_FTNN_ZHIBIAO_CHECKAREA_RIGHT_BOTTOM_BIAS_X=126-MacBookAir_FTNN_ZHIBIAO_BASEPOINT_X
+MacBookAir_FTNN_ZHIBIAO_CHECKAREA_RIGHT_BOTTOM_BIAS_Y =747-MacBookAir_FTNN_ZHIBIAO_BASEPOINT_Y
+
+//迷你交易窗口左上角
+MacBookAir_TRADE_LEFT_TOP_POINT_X = 901
+MacBookAir_TRADE_LEFT_TOP_POINT_Y = 33
+
+MacBookAir_GENSUI_SHIJIA_BIAS_X = 1052-MacBookAir_TRADE_LEFT_TOP_POINT_X 
+MacBookAir_GENSUI_SHIJIA_BIAS_Y = 158 - MacBookAir_TRADE_LEFT_TOP_POINT_Y
+
+MacBookAir_SELECT_GENSUI_SHIJIA_BIAS_X = 1052 - MacBookAir_TRADE_LEFT_TOP_POINT_X
+MacBookAir_SELECT_GENSUI_SHIJIA_BIAS_Y = 215 - MacBookAir_TRADE_LEFT_TOP_POINT_Y
+
+MacBookAir_AMOUNT_YISHOU_BIAS_X=1033 - MacBookAir_TRADE_LEFT_TOP_POINT_X
+MacBookAir_AMOUNT_YISHOU_BIAS_Y = 191 - MacBookAir_TRADE_LEFT_TOP_POINT_Y
+
+//迷你交易窗口数量填写栏左坐标（用于复位数量）
+MacBookAir_AMOUNT_TABLE_LEFT_BIAS_X=950 - MacBookAir_TRADE_LEFT_TOP_POINT_X
+MacBookAir_AMOUNT_TABLE_LEFT_BIAS_Y = 190 - MacBookAir_TRADE_LEFT_TOP_POINT_Y
+//迷你交易窗口数量填写栏右坐标（用于复位数量）
+MacBookAir_AMOUNT_TABLE_RIGHT_BIAS_X=1020 - MacBookAir_TRADE_LEFT_TOP_POINT_X
+MacBookAir_AMOUNT_TABLE_RIGHT_BIAS_Y =190 - MacBookAir_TRADE_LEFT_TOP_POINT_Y
+
+//卖出按键
+MacBookAir_TRADE_SELL_BIAS_X = 1052 - MacBookAir_TRADE_LEFT_TOP_POINT_X
+MacBookAir_TRADE_SELL_BIAS_Y = 290 - MacBookAir_TRADE_LEFT_TOP_POINT_Y
+
+
+
+//宽度1440表示是MacBook Air
+If ScreenW = 1440 Then 
+	FTNN_LEFT_TOP_POINT_X=MacBookAir_LEFT_TOP_POINT_X
+	FTNN_LEFT_TOP_POINT_Y = MacBookAir_LEFT_TOP_POINT_Y
+	
+	FTNN_STOCK_CODE_RIGHT_BIAS_X=MacBookAir_STOCK_CODE_RIGHT_BIAS_X
+	FTNN_STOCK_CODE_RIGHT_BIAS_Y = MacBookAir_STOCK_CODE_RIGHT_BIAS_Y
+	
+	FTNN_STOCK_CODE_LEFT_BIAS_X=MacBookAir_STOCK_CODE_LEFT_BIAS_X
+	FTNN_STOCK_CODE_LEFT_BIAS_Y=MacBookAir_STOCK_CODE_LEFT_BIAS_Y
+	
+	FTNN_ZHIBIAO_BASEPOINT_X=MacBookAir_FTNN_ZHIBIAO_BASEPOINT_X
+	FTNN_ZHIBIAO_BASEPOINT_Y=MacBookAir_FTNN_ZHIBIAO_BASEPOINT_Y
+	
+	//检查指标出现的区域
+	FTNN_ZHIBIAO_CHECKAREA_LEFT_TOP_BIAS_X=MacBookAir_FTNN_ZHIBIAO_CHECKAREA_LEFT_TOP_BIAS_X
+	FTNN_ZHIBIAO_CHECKAREA_LEFT_TOP_BIAS_Y=MacBookAir_FTNN_ZHIBIAO_CHECKAREA_LEFT_TOP_BIAS_Y
+	
+	FTNN_ZHIBIAO_CHECKAREA_RIGHT_BOTTOM_BIAS_X=MacBookAir_FTNN_ZHIBIAO_CHECKAREA_RIGHT_BOTTOM_BIAS_X
+	FTNN_ZHIBIAO_CHECKAREA_RIGHT_BOTTOM_BIAS_Y=MacBookAir_FTNN_ZHIBIAO_CHECKAREA_RIGHT_BOTTOM_BIAS_Y
+	
+	//迷你交易窗口左上角
+	TRADE_LEFT_TOP_POINT_X=MacBookAir_TRADE_LEFT_TOP_POINT_X
+	TRADE_LEFT_TOP_POINT_Y=MacBookAir_TRADE_LEFT_TOP_POINT_Y
+	
+	GENSUI_SHIJIA_BIAS_X=MacBookAir_GENSUI_SHIJIA_BIAS_X
+	GENSUI_SHIJIA_BIAS_Y=MacBookAir_GENSUI_SHIJIA_BIAS_Y
+	
+	SELECT_GENSUI_SHIJIA_BIAS_X=MacBookAir_SELECT_GENSUI_SHIJIA_BIAS_X
+	SELECT_GENSUI_SHIJIA_BIAS_Y=MacBookAir_SELECT_GENSUI_SHIJIA_BIAS_Y
+	
+	AMOUNT_YISHOU_BIAS_X=MacBookAir_AMOUNT_YISHOU_BIAS_X
+	AMOUNT_YISHOU_BIAS_Y=MacBookAir_AMOUNT_YISHOU_BIAS_Y
+	
+	//迷你交易窗口数量填写栏左坐标（用于复位数量）
+	AMOUNT_TABLE_LEFT_BIAS_X=MacBookAir_AMOUNT_TABLE_LEFT_BIAS_X
+	AMOUNT_TABLE_LEFT_BIAS_Y=MacBookAir_AMOUNT_TABLE_LEFT_BIAS_Y
+	//迷你交易窗口数量填写栏右坐标（用于复位数量）
+	AMOUNT_TABLE_RIGHT_BIAS_X=MacBookAir_AMOUNT_TABLE_RIGHT_BIAS_X
+	AMOUNT_TABLE_RIGHT_BIAS_Y=MacBookAir_AMOUNT_TABLE_RIGHT_BIAS_Y
+	
+	//卖出按键
+	TRADE_SELL_BIAS_X=MacBookAir_TRADE_SELL_BIAS_X
+	TRADE_SELL_BIAS_Y=MacBookAir_TRADE_SELL_BIAS_Y
+Else 
+	
+End If
+
+'该数组可容纳50个股票代码（包括注释行在内），表示该股票是否有交易的标志
+Dim trade_mark(50)
+'对该数组初始化，默认值为0
+Dim trade_mark_index
+trade_mark_index = 0
+For UBound(trade_mark)
+	trade_mark(trade_mark_index) = 0
+	trade_mark_index=trade_mark_index+1
+Next
+
+
+//判断时间是否进入了一个新周期,否则在1分钟内对同一股票多次轮询没有意义
+Dim Old_Hour,Old_Minute
+Old_Hour=0
+Old_Minute = 0
+
+//读出文件的股票代码（每行一个），存到数组MyArray
+Text = Plugin.File.ReadFileEx("C:\9\Realtime_Moniter_Code.txt") 
+dim MyArray
+MyArray = Split(Text, "|")
+
+While 1
+    //时间必须在交易时间内才进行轮询下单，交易时间外没有意义
+    If (( Time > "00:01:00" and Time < "12:00:01" ) or ( Time > "12:00:00" and Time < "22:01:01" ) )  Then
+        Now_Hour = Hour(Now)
+        Now_Minute = Minute(Now)
+        
+       if(Now_Hour<>Old_Hour or Now_Minute<>Old_Minute ) then
+            '这个初始化非常重要!
+            i=0
+            For UBound(MyArray)
+                '回车换行是为了区别不同种类的股票代码
+                
+                'MessageBox i
+                'MessageBox MyArray(i)
+                'MessageBox trade_mark(i)
+                
+                If MyArray(i) <> "" and Instr(MyArray(i), "'") = 0 and trade_mark(i)=0 Then 
+                	MoveTo FTNN_LEFT_TOP_POINT_X + FTNN_STOCK_CODE_RIGHT_BIAS_X, FTNN_LEFT_TOP_POINT_Y + FTNN_STOCK_CODE_RIGHT_BIAS_Y
+                	'反人类！要先鼠标左键单击一下，再按定鼠标左键从左到右，松开，删除，输入新代码
+                	LeftClick 1
+                	LeftDown 1
+                	Delay 100
+					MoveTo FTNN_LEFT_TOP_POINT_X + FTNN_STOCK_CODE_LEFT_BIAS_X, FTNN_LEFT_TOP_POINT_Y + FTNN_STOCK_CODE_LEFT_BIAS_Y
+					Delay 100
+					LeftUp 1
+					Delay 100
+					KeyPress "BackSpace", 1
+					Delay 100
+					SayString MyArray(i)
+                    KeyDown "Enter", 1
+                    Delay 20
+                    KeyUp "Enter", 1
+                    Delay 1000
+					
+					//Find_Picture_And_DoSomething
+					FindPic FTNN_ZHIBIAO_BASEPOINT_X+FTNN_ZHIBIAO_CHECKAREA_LEFT_TOP_BIAS_X,FTNN_ZHIBIAO_BASEPOINT_Y+FTNN_ZHIBIAO_CHECKAREA_LEFT_TOP_BIAS_Y,FTNN_ZHIBIAO_BASEPOINT_X+FTNN_ZHIBIAO_CHECKAREA_RIGHT_BOTTOM_BIAS_X,FTNN_ZHIBIAO_BASEPOINT_Y+FTNN_ZHIBIAO_CHECKAREA_RIGHT_BOTTOM_BIAS_Y,"Attachment:\ZHANG_1_FTNN.bmp",1,intX,intY
+    				If intX > 0 And intY > 0 Then 
+    
+						MoveTo TRADE_LEFT_TOP_POINT_X+GENSUI_SHIJIA_BIAS_X,TRADE_LEFT_TOP_POINT_Y+GENSUI_SHIJIA_BIAS_Y
+    					LeftClick 1
+    					Delay 500
+    	
+						MoveTo TRADE_LEFT_TOP_POINT_X + SELECT_GENSUI_SHIJIA_BIAS_X, TRADE_LEFT_TOP_POINT_Y + SELECT_GENSUI_SHIJIA_BIAS_Y
+						LeftClick 1
+						Delay 500
+			
+						MoveTo TRADE_LEFT_TOP_POINT_X+AMOUNT_TABLE_RIGHT_BIAS_X,TRADE_LEFT_TOP_POINT_Y+AMOUNT_TABLE_RIGHT_BIAS_Y
+						LeftDown 1
+						MoveTo TRADE_LEFT_TOP_POINT_X+AMOUNT_TABLE_LEFT_BIAS_X, TRADE_LEFT_TOP_POINT_Y+AMOUNT_TABLE_LEFT_BIAS_Y
+						LeftUp 1
+						Delay 500
+						KeyPress "BackSpace", 1
+						Delay 500
+			
+						MoveTo TRADE_LEFT_TOP_POINT_X+AMOUNT_YISHOU_BIAS_X,TRADE_LEFT_TOP_POINT_Y+AMOUNT_YISHOU_BIAS_Y
+						LeftClick 1
+						Delay 500		
+			
+						MoveTo TRADE_LEFT_TOP_POINT_X + TRADE_SELL_BIAS_X, TRADE_LEFT_TOP_POINT_Y + TRADE_SELL_BIAS_Y
+						LeftClick 1
+						Delay 500
+						
+						//符合交易条件，标志位置1，该股票已交易下次该股票不再进行轮询
+						trade_mark(i)=1
+						
+						MessageBox "123"
+    				Else 
+    					MessageBox "456"
+    				End If	
+                End If
+                
+                '序号加1，准备进行下一股票
+    			i = i + 1
+            Next
+        '测试完记得把时间比较开启
+        'Old_Hour = Now_Hour
+        'Old_Minute = Now_Minute    
+        End If
+        
+    End If
+Wend
